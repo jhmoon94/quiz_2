@@ -1,0 +1,15 @@
+<div class="main-body">
+<div class="card-deck">
+
+     <% @posts.each do |post| %>
+         <div class="card">
+            <div class="card-body" >
+                <%= link_to post do %>
+                <h3 class="card-title"><%= post.title %></h3>
+                <% end %>
+                <p class="card-text"><%= post.body%></p>
+            </div>
+         </div>
+    <% end %>
+</div>
+</div>
