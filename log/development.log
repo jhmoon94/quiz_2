@@ -330,3 +330,306 @@ Processing by PostsController#index as HTML
 Completed 200 OK in 27ms (Views: 23.4ms | ActiveRecord: 1.9ms | Allocations: 8022)
 
 
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (6.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (33.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "blog_on_rails_development"[0m
+  [1m[35m (27.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "blog_on_rails_test"[0m
+  [1m[35m (175.9ms)[0m  [1m[35mCREATE DATABASE "blog_on_rails_development" ENCODING = 'unicode'[0m
+  [1m[35m (42.3ms)[0m  [1m[35mCREATE DATABASE "blog_on_rails_test" ENCODING = 'unicode'[0m
+  [1m[35m (14.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1580729715615622215)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePosts (20200426190351)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "posts" ("id" bigserial primary key, "title" character varying, "body" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200426190351"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateComments (20200430223403)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "comments" ("id" bigserial primary key, "body" text, "post_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_2fd19c0db7"
+FOREIGN KEY ("post_id")
+  REFERENCES "posts" ("id")
+)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_comments_on_post_id" ON "comments" ("post_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200430223403"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-07-28 13:23:32.663187"], ["updated_at", "2021-07-28 13:23:32.663187"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(1580729715615622215)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1580729715615622215)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210728132408)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(1580729715615622215)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1580729715615622215)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210728132408)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(1580729715615622215)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1580729715615622215)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210728132408)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210728132408"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(1580729715615622215)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2021-07-28 06:39:15 -0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (4.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."updated_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:4
+  Rendered posts/index.html.erb within layouts/application (Duration: 6.4ms | Allocations: 987)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_navbar.html.erb (Duration: 0.6ms | Allocations: 177)
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `current_user'
+  Rendered layout layouts/application.html.erb (Duration: 881.5ms | Allocations: 32828)
+Completed 200 OK in 892ms (Views: 874.3ms | ActiveRecord: 11.4ms | Allocations: 38240)
+
+
+Started GET "/sessions/new" for ::1 at 2021-07-28 06:39:19 -0700
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 5.0ms | Allocations: 1030)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_navbar.html.erb (Duration: 0.0ms | Allocations: 29)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `current_user'
+  Rendered layout layouts/application.html.erb (Duration: 72.1ms | Allocations: 8440)
+Completed 200 OK in 74ms (Views: 73.3ms | ActiveRecord: 0.4ms | Allocations: 9367)
+
+
+Started GET "/users/new" for ::1 at 2021-07-28 06:39:21 -0700
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 196.3ms | Allocations: 340674)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_navbar.html.erb (Duration: 0.0ms | Allocations: 30)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `current_user'
+  Rendered layout layouts/application.html.erb (Duration: 203.5ms | Allocations: 348159)
+Completed 200 OK in 218ms (Views: 204.9ms | ActiveRecord: 4.8ms | Allocations: 351971)
+
+
+Started POST "/users" for ::1 at 2021-07-28 06:39:35 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"vkBP6LPjEcUm+oJiiuJW88u8+V5s3wyBUyAVMYOD27FJI9dIr1BLn0XHPSYSiKppjrVmWq0U7exZ4nWCiBZr8g==", "user"=>{"first_name"=>"sss", "last_name"=>"sss", "email"=>"sss@sss.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create User"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sss@sss.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Create (4.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["first_name", "sss"], ["last_name", "sss"], ["email", "sss@sss.com"], ["password_digest", "$2a$12$cfWk2XhSRSCL45uvMdzkledSJ.XAf3oR/R6DV7WgSQRZw5s6NDhYK"], ["created_at", "2021-07-28 13:39:35.970383"], ["updated_at", "2021-07-28 13:39:35.970383"]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+Redirected to http://localhost:3000/
+Completed 302 Found in 279ms (ActiveRecord: 5.5ms | Allocations: 4131)
+
+
+Started GET "/" for ::1 at 2021-07-28 06:39:35 -0700
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."updated_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:4
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.2ms | Allocations: 492)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_navbar.html.erb (Duration: 0.0ms | Allocations: 25)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `current_user'
+  Rendered layout layouts/application.html.erb (Duration: 15.1ms | Allocations: 11673)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.8ms | Allocations: 12018)
+
+
+  
+ActionView::Template::Error (undefined method `full_name' for #<User id: 1, first_name: "sss", last_name: "sss", email: "sss@sss.com", password_digest: [FILTERED], created_at: "2021-07-28 13:39:35.970383000 +0000", updated_at: "2021-07-28 13:39:35.970383000 +0000">):
+    12:   <body>
+    13:   <%= render 'shared/navbar' %>
+    14:     <% if user_signed_in? %>
+    15:     Hello <%= current_user.full_name %>,
+    16:     <%= link_to "Logout", sessions_path, method: :delete,
+    17:              data: {confirm: "are you sure you want to log out?"}%>
+    18:   <% else %>
+  
+app/views/layouts/application.html.erb:15
+Started GET "/" for ::1 at 2021-07-28 06:40:03 -0700
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (3.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."updated_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:4
+  Rendered posts/index.html.erb within layouts/application (Duration: 5.4ms | Allocations: 490)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_navbar.html.erb (Duration: 0.1ms | Allocations: 25)
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `current_user'
+  Rendered layout layouts/application.html.erb (Duration: 44.3ms | Allocations: 10972)
+Completed 500 Internal Server Error in 47ms (ActiveRecord: 4.0ms | Allocations: 11298)
+
+
+  
+ActionView::Template::Error (undefined method `full_name' for #<User id: 1, first_name: "sss", last_name: "sss", email: "sss@sss.com", password_digest: [FILTERED], created_at: "2021-07-28 13:39:35.970383000 +0000", updated_at: "2021-07-28 13:39:35.970383000 +0000">):
+    12:   <body>
+    13:   <%= render 'shared/navbar' %>
+    14:     <% if user_signed_in? %>
+    15:     Hello <%= current_user.name %>,
+    16:     <%= link_to "Logout", sessions_path, method: :delete,
+    17:              data: {confirm: "are you sure you want to log out?"}%>
+    18:   <% else %>
+  
+app/views/layouts/application.html.erb:15
+Started GET "/" for ::1 at 2021-07-28 06:40:09 -0700
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."updated_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:4
+  Rendered posts/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 680)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_navbar.html.erb (Duration: 0.4ms | Allocations: 160)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `current_user'
+  Rendered layout layouts/application.html.erb (Duration: 23.3ms | Allocations: 11816)
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 1.2ms | Allocations: 12911)
+
+
+  
+ActionView::Template::Error (undefined method `name' for #<User id: 1, first_name: "sss", last_name: "sss", email: "sss@sss.com", password_digest: [FILTERED], created_at: "2021-07-28 13:39:35.970383000 +0000", updated_at: "2021-07-28 13:39:35.970383000 +0000">):
+    12:   <body>
+    13:   <%= render 'shared/navbar' %>
+    14:     <% if user_signed_in? %>
+    15:     Hello <%= current_user.name %>,
+    16:     <%= link_to "Logout", sessions_path, method: :delete,
+    17:              data: {confirm: "are you sure you want to log out?"}%>
+    18:   <% else %>
+  
+app/views/layouts/application.html.erb:15
+Started GET "/" for ::1 at 2021-07-28 06:40:10 -0700
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."updated_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:4
+  Rendered posts/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 490)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_navbar.html.erb (Duration: 0.1ms | Allocations: 25)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `current_user'
+  Rendered layout layouts/application.html.erb (Duration: 18.6ms | Allocations: 10984)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 1.3ms | Allocations: 11311)
+
+
+  
+ActionView::Template::Error (undefined method `name' for #<User id: 1, first_name: "sss", last_name: "sss", email: "sss@sss.com", password_digest: [FILTERED], created_at: "2021-07-28 13:39:35.970383000 +0000", updated_at: "2021-07-28 13:39:35.970383000 +0000">):
+    12:   <body>
+    13:   <%= render 'shared/navbar' %>
+    14:     <% if user_signed_in? %>
+    15:     Hello <%= current_user.name %>,
+    16:     <%= link_to "Logout", sessions_path, method: :delete,
+    17:              data: {confirm: "are you sure you want to log out?"}%>
+    18:   <% else %>
+  
+app/views/layouts/application.html.erb:15
+Started GET "/" for ::1 at 2021-07-28 06:40:13 -0700
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."updated_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:4
+  Rendered posts/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 497)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_navbar.html.erb (Duration: 0.1ms | Allocations: 25)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `current_user'
+  Rendered layout layouts/application.html.erb (Duration: 24.2ms | Allocations: 10994)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 1.1ms | Allocations: 11330)
+
+
+  
+ActionView::Template::Error (undefined method `name' for #<User id: 1, first_name: "sss", last_name: "sss", email: "sss@sss.com", password_digest: [FILTERED], created_at: "2021-07-28 13:39:35.970383000 +0000", updated_at: "2021-07-28 13:39:35.970383000 +0000">):
+    12:   <body>
+    13:   <%= render 'shared/navbar' %>
+    14:     <% if user_signed_in? %>
+    15:     Hello <%= current_user.name %>,
+    16:     <%= link_to "Logout", sessions_path, method: :delete,
+    17:              data: {confirm: "are you sure you want to log out?"}%>
+    18:   <% else %>
+  
+app/views/layouts/application.html.erb:15
+Started GET "/" for ::1 at 2021-07-28 06:40:16 -0700
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (1.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."updated_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:4
+  Rendered posts/index.html.erb within layouts/application (Duration: 4.8ms | Allocations: 490)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_navbar.html.erb (Duration: 0.1ms | Allocations: 25)
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `current_user'
+  Rendered layout layouts/application.html.erb (Duration: 27.5ms | Allocations: 10984)
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 3.5ms | Allocations: 11310)
+
+
+  
+ActionView::Template::Error (undefined method `name' for #<User id: 1, first_name: "sss", last_name: "sss", email: "sss@sss.com", password_digest: [FILTERED], created_at: "2021-07-28 13:39:35.970383000 +0000", updated_at: "2021-07-28 13:39:35.970383000 +0000">):
+    12:   <body>
+    13:   <%= render 'shared/navbar' %>
+    14:     <% if user_signed_in? %>
+    15:     Hello <%= current_user.name %>,
+    16:     <%= link_to "Logout", sessions_path, method: :delete,
+    17:              data: {confirm: "are you sure you want to log out?"}%>
+    18:   <% else %>
+  
+app/views/layouts/application.html.erb:15
+Started GET "/" for ::1 at 2021-07-28 06:40:36 -0700
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.9ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."updated_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:4
+  Rendered posts/index.html.erb within layouts/application (Duration: 3.8ms | Allocations: 684)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_navbar.html.erb (Duration: 0.4ms | Allocations: 160)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `current_user'
+  Rendered layout layouts/application.html.erb (Duration: 25.3ms | Allocations: 9049)
+Completed 200 OK in 32ms (Views: 28.0ms | ActiveRecord: 1.2ms | Allocations: 10182)
+
+
+Started DELETE "/sessions" for ::1 at 2021-07-28 06:40:39 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"yHLE1K0FcgGPSw9yGoCDr7znli4LHDZ6L0HMoWo3vdQ/EVx0sbYoW+x2sDaC6n81+e4JKsrX1xclg6wSYaINlw=="}
+Redirected to http://localhost:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 716)
+
+
+Started GET "/" for ::1 at 2021-07-28 06:40:39 -0700
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.9ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."updated_at" DESC[0m
+  ↳ app/views/posts/index.html.erb:4
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 491)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered shared/_navbar.html.erb (Duration: 0.0ms | Allocations: 25)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:13:in `current_user'
+  Rendered layout layouts/application.html.erb (Duration: 12.9ms | Allocations: 8368)
+Completed 200 OK in 14ms (Views: 11.9ms | ActiveRecord: 1.3ms | Allocations: 8732)
+
+
